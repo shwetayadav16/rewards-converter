@@ -1,19 +1,32 @@
+
 public class RewardValue {
     private double cashValue;
-    private static final double MILES_CONVERSION_RATE = 0.0035;  // Example conversion rate: 1 mile for every $0.0035
+    private double milesValue;
 
-    // Constructor to initialize the cash value
+    // Conversion rate from miles to cash
+    private static final double MILES_TO_CASH_RATE = 0.0035;
+
+    // Constructor for cash value
     public RewardValue(double cashValue) {
         this.cashValue = cashValue;
+        this.milesValue = cashValue / MILES_TO_CASH_RATE;
     }
 
-    // Method to convert the cash value to miles
-    public double getMilesValue() {
-        return cashValue / MILES_CONVERSION_RATE;  // Convert cash value to miles
+    // Constructor for miles value
+    public RewardValue(double milesValue, boolean isMiles) {
+        if (isMiles) {
+            this.milesValue = milesValue;
+            this.cashValue = milesValue * MILES_TO_CASH_RATE;
+        }
     }
 
-    // Getter for cash value (if needed in future)
+    // Get the cash value
     public double getCashValue() {
         return cashValue;
+    }
+
+    // Get the miles value
+    public double getMilesValue() {
+        return milesValue;
     }
 }
